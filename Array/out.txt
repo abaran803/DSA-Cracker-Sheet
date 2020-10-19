@@ -1,0 +1,2 @@
+Minimum: 1
+Maximum: 3000
