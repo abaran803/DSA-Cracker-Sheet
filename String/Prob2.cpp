@@ -16,7 +16,7 @@ int32_t main()
 	#endif 
 
 	int t=1; 
-	cin>>t; 
+	//cin>>t; 
 	while(t--) 
 	{ 
 		solve(); 
@@ -26,37 +26,34 @@ int32_t main()
 	return 0; 
 } 
 
-int algo(int arr[],int n,int k)
+bool isPal(string S,int l,int r)
 {
-	int mini = n+1;
-	int cnt=0;
-	for(int i=0;i<n;i++)
-		if(arr[i]<=k)
-			cnt++;
-	int count = 0;
-	for(int i=0;i<cnt;i++)
-		if(arr[i]>k)
-			count++;
-	mini = min(mini,count);
-	for(int i=cnt;i<n;i++)
-	{
-		if(arr[i-cnt] > k)
-			count--;
-		if(arr[i] > k)
-			count++;
-		mini = min(mini,count);
-	}
-	return mini;
+    if(l<r)
+    {
+        if(S[l] != S[r])
+            return false;
+        return isPal(S,l+1,r-1);
+    }
+    return true;
+}
+
+int algo(string S)
+{
+   int l=0,r=S.length()-1;
+   return isPal(S,l,r);
+}
+
+int algo2(string S)
+{
+	for(int i=0,j=S.length()-1;i<j;i++,j--)
+        if(S[i] != S[j])
+            return false;
+   return true;
 }
 
 void solve() 
 { 
-	int n;
-	cin >> n;
-	int arr[n];
-	for(int i=0;i<n;i++)
-		cin >> arr[i];
-	int k;
-	cin >> k;
-	cout << algo(arr,n,k);
-}
+	string str;
+	cin >> str;
+	cout << algo2(str);
+} 

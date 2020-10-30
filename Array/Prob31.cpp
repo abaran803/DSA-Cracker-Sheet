@@ -26,27 +26,31 @@ int32_t main()
 	return 0; 
 } 
 
-int algo(int arr[],int n,int k)
+int algo(int arr[],int n)
 {
-	int mini = n+1;
-	int cnt=0;
-	for(int i=0;i<n;i++)
-		if(arr[i]<=k)
-			cnt++;
-	int count = 0;
-	for(int i=0;i<cnt;i++)
-		if(arr[i]>k)
-			count++;
-	mini = min(mini,count);
-	for(int i=cnt;i<n;i++)
+	int i=0,j=n-1,count=0;
+	while(i<j)
 	{
-		if(arr[i-cnt] > k)
-			count--;
-		if(arr[i] > k)
+		if(arr[i]<arr[j])
+		{
+			i++;
+			arr[i] = arr[i]+arr[i-1];
 			count++;
-		mini = min(mini,count);
+		}
+		else if(arr[i]>arr[j])
+		{
+			j--;
+			arr[j] = arr[j]+arr[j+1];
+			count++;
+		}
+		else
+		{
+			i++;
+			j--;
+		}
+		// cout << arr[i] << ' ' << arr[j] << endl;
 	}
-	return mini;
+	return count;
 }
 
 void solve() 
@@ -56,7 +60,5 @@ void solve()
 	int arr[n];
 	for(int i=0;i<n;i++)
 		cin >> arr[i];
-	int k;
-	cin >> k;
-	cout << algo(arr,n,k);
-}
+	cout << algo(arr,n);
+} 

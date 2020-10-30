@@ -16,7 +16,7 @@ int32_t main()
 	#endif 
 
 	int t=1; 
-	cin>>t; 
+	//cin>>t; 
 	while(t--) 
 	{ 
 		solve(); 
@@ -26,37 +26,33 @@ int32_t main()
 	return 0; 
 } 
 
-int algo(int arr[],int n,int k)
+string algo(int n)
 {
-	int mini = n+1;
-	int cnt=0;
-	for(int i=0;i<n;i++)
-		if(arr[i]<=k)
-			cnt++;
-	int count = 0;
-	for(int i=0;i<cnt;i++)
-		if(arr[i]>k)
-			count++;
-	mini = min(mini,count);
-	for(int i=cnt;i<n;i++)
+	if(n == 1)
+		return "1";
+	string arr = algo(n-1);
+	string str1;
+	int count=1;
+	string temp;
+	for(int i=1;i<arr.length();i++)
 	{
-		if(arr[i-cnt] > k)
-			count--;
-		if(arr[i] > k)
+		if(arr[i] == arr[i-1])
 			count++;
-		mini = min(mini,count);
+		else
+		{
+			str1 += char(count+'0');
+			str1 += arr[i-1];
+			count = 1;
+		}
 	}
-	return mini;
+	str1 += char(count+'0');
+	str1 += arr[arr.length()-1];
+	return str1;
 }
 
 void solve() 
 { 
 	int n;
 	cin >> n;
-	int arr[n];
-	for(int i=0;i<n;i++)
-		cin >> arr[i];
-	int k;
-	cin >> k;
-	cout << algo(arr,n,k);
-}
+	cout << algo(n);
+} 

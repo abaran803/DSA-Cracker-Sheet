@@ -16,7 +16,7 @@ int32_t main()
 	#endif 
 
 	int t=1; 
-	cin>>t; 
+	//cin>>t; 
 	while(t--) 
 	{ 
 		solve(); 
@@ -26,37 +26,27 @@ int32_t main()
 	return 0; 
 } 
 
-int algo(int arr[],int n,int k)
+void algo1(vector<char> &s,int l,int r)
 {
-	int mini = n+1;
-	int cnt=0;
-	for(int i=0;i<n;i++)
-		if(arr[i]<=k)
-			cnt++;
-	int count = 0;
-	for(int i=0;i<cnt;i++)
-		if(arr[i]>k)
-			count++;
-	mini = min(mini,count);
-	for(int i=cnt;i<n;i++)
+	if(l<r)
 	{
-		if(arr[i-cnt] > k)
-			count--;
-		if(arr[i] > k)
-			count++;
-		mini = min(mini,count);
+		swap(s[l],s[r]);
+		algo1(s,l+1,r-1);
 	}
-	return mini;
 }
 
 void solve() 
 { 
+	vector<char> vec;
 	int n;
 	cin >> n;
-	int arr[n];
+	char a;
 	for(int i=0;i<n;i++)
-		cin >> arr[i];
-	int k;
-	cin >> k;
-	cout << algo(arr,n,k);
-}
+	{
+		cin >> a;
+		vec.push_back(a);
+	}
+	algo1(vec,0,n-1);
+	for(int i=0;i<n;i++)
+		cout << vec[i] << ' ';
+} 
