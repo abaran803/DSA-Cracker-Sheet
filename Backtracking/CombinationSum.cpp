@@ -32,26 +32,26 @@ int32_t main()
 } 
 
 void combinationSumUtils(vi arr,int curr,int x,int n,int b,vi vec,vector<vi> &vec1){
-    if(curr > b || x >= n) {
+    if(curr > b) {
         return;
     }
     if(curr == b) {
-        cout << "testing...\n";
         vec1.push_back(vec);
         return;
     }
-    combinationSumUtils(arr,curr,x+1,n,b,vec,vec1);
-    if(x+1 < n) {
-        vec.push_back(arr[x+1]);
-        combinationSumUtils(arr,curr+arr[x+1],x+1,n,b,vec,vec1);
+    for(int i=x;i<n;i++) {
+        vec.push_back(arr[i]);
+        combinationSumUtils(arr,curr+arr[i],i,n,b,vec,vec1);
         vec.pop_back();
     }
 }
 
 vector<vector<int>> combinationSum(vector<int> &A, int B)  {
     vi vec;
+    sort(A.begin(),A.end());
+    A.erase(unique(A.begin(), A.end()), A.end());
     vector<vi> vec1;
-    combinationSumUtils(A,0,-1,A.size(),B,vec,vec1);
+    combinationSumUtils(A,0,0,A.size(),B,vec,vec1);
     return vec1;
 }
 
