@@ -1,1 +1,2 @@
-GeeksforGeeks
+4
+13 7 6 12
