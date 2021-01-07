@@ -8,7 +8,7 @@ class Heap {
     int size;
 
     int Lchild(int i) {
-        int LC = 2*i+2;
+        int LC = 2*i+1;
         if(LC > pos) {
             return -1;
         }
@@ -66,6 +66,12 @@ class Heap {
         Heap(int);
         void push(int);
         int pop();
+        void Traverse() {
+            for(int i=0;i<=pos;i++) {
+                cout << arr[i] << ' ';
+            }
+            cout << endl;
+        }
 };
 
 Heap::Heap(int sz) {
@@ -100,19 +106,20 @@ int main() {
     freopen("inp.txt","r",stdin);
     freopen("out.txt","w",stdout);
 
-    Heap H(7);
-    H.push(25);
-    H.push(42);
-    H.push(33);
-    H.push(34);
-    H.push(35);
-    H.push(36);
-
-    cout << H.pop() << endl;
-    cout << H.pop() << endl;
-    cout << H.pop() << endl;
-    cout << H.pop() << endl;
-    cout << H.pop() << endl;
+    Heap H(6);
+    H.push(21);
+    H.push(5);
+    H.push(45);
+    H.push(3);
+    H.push(2);
+    H.push(23);
+    cout << H.pop() << ' ';
+    cout << H.pop() << ' ';
+    cout << H.pop() << ' ';
+    cout << H.pop() << ' ';
+    cout << H.pop() << ' ';
+    cout << H.pop() << ' ';
+    cout << endl;
 
     return 0;
 }

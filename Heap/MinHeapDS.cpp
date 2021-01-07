@@ -8,7 +8,7 @@ class MinHeap {
     int size;
 
     int Lchild(int i) {
-        int LC = 2*i+2;
+        int LC = 2*i+1;
         if(LC > pos) {
             return -1;
         }

@@ -9,7 +9,7 @@ class Heap {
     int size;
 
     int Lchild(int i) {
-        int LC = 2*i+2;
+        int LC = 2*i+1;
         if(LC > pos) {
             return -1;
         }
@@ -68,6 +68,7 @@ class Heap {
         void push(int);
         int pop();
         void TraverseHeapSort();
+        void Heapify();
 };
 
 Heap::Heap(int sz) {
@@ -102,5 +103,13 @@ int Heap::pop() {
 void Heap::TraverseHeapSort() {
     for(int i=0;i<maxSize;i++) {
         cout << arr[i] << ' ';
+    }
+}
+
+void Heap::Heapify() {
+    for(int i=pos-1;i>=0;i--) {
+        if(Lchild(i) != -1) {
+            CorrectTopToBottom(i);
+        }
     }
 }

@@ -4,11 +4,12 @@ using namespace std;
 
 class MinHeap {
     int *arr;
-    int pos = -1;
+    int pos;
+    int maxSize;
     int size;
 
     int Lchild(int i) {
-        int LC = 2*i+2;
+        int LC = 2*i+1;
         if(LC > pos) {
             return -1;
         }
@@ -66,11 +67,13 @@ class MinHeap {
         MinHeap(int);
         void push(int);
         int pop();
+        void TraverseHeapSort();
 };
 
 MinHeap::MinHeap(int sz) {
     arr = new int[sz];
     pos = -1;
+    maxSize = 0;
     size = sz;
 }
 
@@ -80,6 +83,7 @@ void MinHeap::push(int data) {
         return;
     }
     pos++;
+    maxSize++;
     arr[pos] = data;
     CorrectBottomToTop(pos);
 }
@@ -93,4 +97,10 @@ int MinHeap::pop() {
     swap(arr[0],arr[pos--]);
     CorrectTopToBottom(0);
     return data;
+}
+
+void MinHeap::TraverseHeapSort() {
+    for(int i=0;i<maxSize;i++) {
+        cout << arr[i] << ' ';
+    }
 }
