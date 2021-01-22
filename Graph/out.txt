@@ -1,3 +1,1 @@
-2 ~~
-0 ~~
-Cycle Exist
+INF 0 2 9 8 10 

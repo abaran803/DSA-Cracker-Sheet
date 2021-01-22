@@ -1,78 +1,69 @@
-#include<iostream>
-#include<list>
-#include<vector>
-using namespace std;
+//Error
 
-class Graph {
-    list<int> *adj;
-    int V;
+// #include<iostream>
+// #include<vector>
+// using namespace std;
 
-    public:
 
-    Graph(int sz) {
-        this->V = sz;
-        this->adj = new list<int>[V];
-    }
+// void DFS(int x,int n, vector<vector<int>>& connections,bool vis[]) {
+//     vis[x] = true;
+//     for(int i=0;i<connections[x].size();i++) {
+//         if(!vis[connections[x][i]]) {
+//             DFS(connections[x][i],n,connections,vis);
+//         }
+//     }
+// }
 
-    void insert(int a,int b) {
-        adj[a].push_front(b);
-    }
+// int makeConnected(int n, vector<vector<int>>& connections) {
+//     bool vis[n];
+//     int sz = 0;
+//     for(int i=0;i<connections.size();i++) {
+//         for(int j=0;j<connections[i].size();j++) {
+//             sz++;
+//         }
+//     }
+//     sz /= 2;
+//     for(int i=0;i<n;i++) {
+//         vis[i] = false;
+//     }
+//     if(sz < n-1) {
+//         return -1;
+//     }
+//     int cnt = 0;
+//     for(int i=0;i<n;i++) {
+//         if(!vis[i]) {
+//             DFS(i,n,connections,vis);
+//             cnt++;
+//         }
+//     }
+//     return cnt-1;
+// }
 
-    bool isCyclicUtils(int x,vector<bool> vis) {
+// void insert(vector<vector<int>> &vec,int a,int b) {
+//     vec[a].push_back(b);
+//     vec[b].push_back(a);
+// }
 
-        if(vis[x]) {
-            return true;
-        }
+// int main() {
 
-        vis[x] = true;
+//     freopen("inp.txt","r",stdin);
+//     freopen("out.txt","w",stdout);
 
-        for(auto it=adj[x].begin();it != adj[x].end();it++) {
-            if(isCyclicUtils(vis[*it],vis)) {
-                cout << *it << " ~~\n";
-                return true;
-            }
-        }
-        vis[x] = false;
+//     int n,e;
+//     cin >> n >> e;
 
-        return false;
-    }
+//     vector<int> vec1;
+//     vector<vector<int>> vec(n,vec1);
 
-    bool isCyclic() {
-        vector<bool> vis(V,false);
+//     for(int i=0;i<e;i++) {
+//         int a,b;
+//         cin >> a >> b;
+//         insert(vec,a,b);
+//     }
 
-        for(int i=0;i<V;i++) {
-            if(isCyclicUtils(i,vis)) {
-                cout << i << " ~~\n";
-                return true;
-            }
-        }
-        
-        return false;
-    }
+//     int k = makeConnected(n,vec);
+//     cout << k << endl;
 
-};
+//     return 0;
 
-int main() {
-
-    freopen("inp.txt","r",stdin);
-    freopen("out.txt","w",stdout);
-
-    int n,v;
-    cin >> n >> v;
-    Graph G(n);
-
-    for(int i=0;i<v;i++) {
-        int a,b;
-        cin >> a >> b;
-        G.insert(a,b);
-    }
-
-    if(G.isCyclic()) {
-        cout << "Cycle Exist";
-    } else {
-        cout << "Cycle doesn't Exist";
-    }
-
-    return 0;
-
-}
+// }
